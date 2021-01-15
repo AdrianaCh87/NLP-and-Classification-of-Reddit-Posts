@@ -1,6 +1,4 @@
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 3: Web APIs & NLP
-
-
+# NLP and Classification of Reddit Posts
 
 
 # Table of Contents
@@ -16,10 +14,10 @@
 ---
 
 
-## Problem Statement 
+## Problem Statement
 There is a lot of disinformation in social media websites. Stories that appear to be real coult not be true.
 To help users differentiate true stories from fake stories, a prediction model will be built using data science.  
-The goal of this project is to build a classification model using Natural Language Processing for text data to predict if a given post was published in the Fake Facts or Science subreddit. 
+The goal of this project is to build a classification model using Natural Language Processing for text data to predict if a given post was published in the Fake Facts or Science subreddit.
 
 ---
 
@@ -28,14 +26,14 @@ The goal of this project is to build a classification model using Natural Langua
 - Used posts from Reddit (a social news aggregation, web content rating, and discussion website.)
 - Retrieved data from two subreddits: Fake Facts and Science
 - Data collected for each post: Title, User ID, URL, Number of comments, Date Created, and Body Text.
-- Used PRAW, Python Reddit API Wrapper, to collect this data from Reddit, and transfer it to a Python format 
+- Used PRAW, Python Reddit API Wrapper, to collect this data from Reddit, and transfer it to a Python format
 - Gathered 1971 “top” posts collected from 2017-2020
     - Science: 990,  Fake Facts: 981
 
-      
 
-  
-     
+
+
+
 ## Data Dictionary
 | Feature | Description |
 | --- | --- |
@@ -59,17 +57,17 @@ The goal of this project is to build a classification model using Natural Langua
 - Transformed text data into numeric values using a vectorizer.
 - Compared the results from CountVectorizer and Term frequency-inverse document frequency.
 - Tuned in the hyperparameters for the vectorizer using gridsearch
-- The "body" feature was dropped since it was missing most values. 
+- The "body" feature was dropped since it was missing most values.
 
 ## Exploratory Data Analysis
 The length of the post titles was analyzed. The distributions below show the number of words in the posts for each subreddit. As seen in the graph, the lenght of posts in Fake Facts are on the lower side as opposed to the length of posts of the Science.\
 ![](Images/Figure1_Distribution_of_number_of_words.png)
 
-Using the TFIDF Vectorizer, a score for the words that are more important to one document relative to all other documents was calculated. 
+Using the TFIDF Vectorizer, a score for the words that are more important to one document relative to all other documents was calculated.
 The following are the words with the highest TFIDF scores for the Fake Facts subreddit:\
 ![](Images/Figure2_Common_Words_in_Fake_Facts.png)
 
- 
+
 The following are the words with the highest TFIDF scores for the Science subreddit:\
 ![](Images/Figure3_Common_Words_in_Science.png)
 
@@ -81,13 +79,13 @@ Also, the sentiment of the posts was analyzed using VADER. As seen in the graph 
 
 ## Model
 
-- In order to build the model, the data was split for training (75%) and testing (25%) using Train Test Split. 
+- In order to build the model, the data was split for training (75%) and testing (25%) using Train Test Split.
 - The performance of three classifiers and two vectorizers was evaluated by building multiple combination models using a pipeline. 5-folds were used for each combination.
 - Classifiers used:
   - Logistic Regression
   - Multinomial Naive Bayes
   - Random Fores
-- The hyperparameters for each classifier and vectorizer were tuned in using grid search. 
+- The hyperparameters for each classifier and vectorizer were tuned in using grid search.
 
 The picture below shows a summary of the modeling process for this project.
 
@@ -96,7 +94,7 @@ The picture below shows a summary of the modeling process for this project.
 ## Model Evaluation
 - All models showed higher accuracy in the training set than in the testing set, meaning the models were overfit. This is due to the large number of features (words) in the model.
 - The baseline score for this model was 50% accuracy (there was no majority class, there were approximately the same number of posts in each of the two subreddits).
-- Accuracy, Sensitivity, Specificity and Precision were calculated for all models. See below table. 
+- Accuracy, Sensitivity, Specificity and Precision were calculated for all models. See below table.
 
 | Model | Accuracy | Sensitivity | Specificity | Precision
 |---|---|---|---|---|
@@ -118,7 +116,7 @@ Confusion Matrix for Random Forest:
 
 ## Conclusion and Recommendations
 - The goal was to built a classification model to help a user identify if a post came from the FakeFacts subreddit or the Science subredit.
-- A Random Forest classification model was built with 96% precision to predict if based on the words in a subreddit title, a post comes from Fake Facts or Science. 
+- A Random Forest classification model was built with 96% precision to predict if based on the words in a subreddit title, a post comes from Fake Facts or Science.
 - Evaluate further the pros and cons of using a Random Forest vs a Naive Bayes Classifier
 - To try this model for subreddits in other languages.
 - To validate this model over time and evaluate its accuracy with new posts.
